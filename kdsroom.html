@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="KDS Room — ruang baca dan refleksi tentang Sastra, Sejarah, dan Sains oleh Kevin Dias Syahputra.">
+<meta name="keywords" content="sastra, sejarah, sains, puisi, blog, KDS Room">
+<meta name="author" content="Kevin Dias Syahputra">
+<meta property="og:title" content="KDS Room">
+<meta property="og:description" content="Ruang baca dan refleksi tentang Sastra, Sejarah, dan Sains.">
+<meta property="og:type" content="website">
+<meta name="google-site-verification" content="">
+<title>KDS Room</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #faf8f3;
+    --paper: #f4f0e8;
+    --ink: #1a1714;
+    --ink-muted: #5a5550;
+    --ink-light: #9a9590;
+    --border: #e2ddd5;
+    --sastra: #8b4a3a;
+    --sastra-light: #f5ede9;
+    --sejarah: #5a4a2a;
+    --sejarah-light: #f5f0e5;
+    --sains: #2a4a5a;
+    --sains-light: #e8f0f5;
+    --accent: #8b4a3a;
+    --max-w: 1100px;
+    --serif: 'Playfair Display', Georgia, serif;
+    --body-serif: 'Source Serif 4', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--body-serif);
+    font-size: 17px;
+    line-height: 1.75;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  button { cursor: pointer; font-family: var(--sans); border: none; background: none; }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--cream);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .logo {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+
+  .logo span { color: var(--sastra); }
+
+  nav { display: flex; gap: 0.25rem; align-items: center; }
+
+  nav a {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    color: var(--ink-muted);
+    transition: all 0.15s;
+    letter-spacing: 0.01em;
+  }
+
+  nav a:hover, nav a.active {
+    color: var(--ink);
+    background: var(--paper);
+  }
+
+  .nav-admin-btn {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.35rem 0.9rem;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    color: var(--ink-muted);
+    transition: all 0.15s;
+    margin-left: 0.5rem;
+  }
+
+  .nav-admin-btn:hover { background: var(--paper); color: var(--ink); }
+
+  .hamburger { display: none; flex-direction: column; gap: 4px; padding: 4px; cursor: pointer; }
+  .hamburger span { display: block; width: 20px; height: 1.5px; background: var(--ink); border-radius: 1px; transition: all 0.2s; }
+
+  /* ── HERO ── */
+  .hero {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 4rem 1.5rem 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-label {
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    max-width: 700px;
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 em { font-style: italic; color: var(--sastra); }
+
+  .hero p {
+    font-size: 1rem;
+    color: var(--ink-muted);
+    max-width: 520px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* ── CATEGORY PILLS ── */
+  .cat-pills {
+    max-width: var(--max-w);
+    margin: 2rem auto 0;
+    padding: 0 1.5rem;
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .cat-pill {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    color: var(--ink-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: 0.02em;
+  }
+
+  .cat-pill:hover, .cat-pill.active { border-color: var(--ink); color: var(--ink); background: var(--paper); }
+  .cat-pill[data-cat="sastra"].active { background: var(--sastra-light); border-color: var(--sastra); color: var(--sastra); }
+  .cat-pill[data-cat="sejarah"].active { background: var(--sejarah-light); border-color: var(--sejarah); color: var(--sejarah); }
+  .cat-pill[data-cat="sains"].active { background: var(--sains-light); border-color: var(--sains); color: var(--sains); }
+
+  /* ── GRID ── */
+  .grid-section {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+
+  .section-title {
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5px;
+    background: var(--border);
+    border: 1.5px solid var(--border);
+  }
+
+  .article-card {
+    background: var(--cream);
+    padding: 1.75rem;
+    cursor: pointer;
+    transition: background 0.15s;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .article-card:hover { background: var(--paper); }
+
+  .card-cat {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .card-cat.sastra { color: var(--sastra); }
+  .card-cat.sejarah { color: var(--sejarah); }
+  .card-cat.sains { color: var(--sains); }
+
+  .cat-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+  .sastra .cat-dot { background: var(--sastra); }
+  .sejarah .cat-dot { background: var(--sejarah); }
+  .sains .cat-dot { background: var(--sains); }
+
+  .card-title {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+  }
+
+  .card-excerpt {
+    font-size: 0.88rem;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    font-weight: 300;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-meta {
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    color: var(--ink-light);
+    margin-top: auto;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* ── ARTICLE VIEW ── */
+  .article-view {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+    display: none;
+  }
+
+  .article-view.visible { display: block; }
+
+  .back-btn {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    color: var(--ink-muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 2rem;
+    transition: color 0.15s;
+  }
+
+  .back-btn:hover { color: var(--ink); }
+
+  .article-header { max-width: 700px; margin-bottom: 2.5rem; }
+
+  .article-cat-badge {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 0.3rem 0.75rem;
+    border-radius: 3px;
+    margin-bottom: 1rem;
+  }
+
+  .badge-sastra { background: var(--sastra-light); color: var(--sastra); }
+  .badge-sejarah { background: var(--sejarah-light); color: var(--sejarah); }
+  .badge-sains { background: var(--sains-light); color: var(--sains); }
+
+  .article-title {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .article-meta-row {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    color: var(--ink-light);
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .article-divider { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+  .article-body {
+    max-width: 700px;
+    font-size: 1.05rem;
+    line-height: 1.85;
+    font-weight: 300;
+    color: var(--ink);
+  }
+
+  .article-body p { margin-bottom: 1.25rem; }
+  .article-body h2 { font-family: var(--serif); font-size: 1.4rem; font-weight: 600; margin: 2rem 0 0.75rem; }
+  .article-body h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; margin: 1.5rem 0 0.5rem; }
+  .article-body blockquote { border-left: 2px solid var(--sastra); margin: 1.5rem 0; padding: 0.5rem 0 0.5rem 1.5rem; font-style: italic; color: var(--ink-muted); }
+  .article-body ul, .article-body ol { margin: 1rem 0 1rem 1.5rem; }
+  .article-body li { margin-bottom: 0.4rem; }
+
+  /* ── STATIC PAGES ── */
+  .static-page {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+    display: none;
+  }
+
+  .static-page.visible { display: block; }
+
+  .page-title {
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-date {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    color: var(--ink-light);
+    margin-bottom: 2rem;
+  }
+
+  .page-body { font-size: 1rem; line-height: 1.85; font-weight: 300; }
+  .page-body p { margin-bottom: 1.2rem; }
+  .page-body h2 { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; margin: 2rem 0 0.75rem; }
+  .page-body ul { margin: 0.75rem 0 1rem 1.5rem; }
+  .page-body li { margin-bottom: 0.4rem; }
+  .page-body a { color: var(--sastra); text-decoration: underline; text-underline-offset: 2px; }
+
+  .contact-form { margin-top: 2rem; }
+  .form-group { margin-bottom: 1.25rem; }
+  .form-group label { display: block; font-family: var(--sans); font-size: 0.82rem; font-weight: 500; margin-bottom: 0.4rem; color: var(--ink-muted); }
+  .form-group input, .form-group textarea {
+    width: 100%;
+    padding: 0.65rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: white;
+    font-family: var(--body-serif);
+    font-size: 0.95rem;
+    color: var(--ink);
+    transition: border-color 0.15s;
+    outline: none;
+  }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--sastra); }
+  .form-group textarea { resize: vertical; min-height: 130px; }
+  .form-submit {
+    background: var(--ink);
+    color: white;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.65rem 1.5rem;
+    border-radius: 4px;
+    letter-spacing: 0.02em;
+    transition: background 0.15s;
+  }
+  .form-submit:hover { background: var(--sastra); }
+
+  /* ── ADMIN ── */
+  .admin-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(26,23,20,0.7);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .admin-overlay.visible { display: flex; }
+
+  .login-box {
+    background: white;
+    border-radius: 8px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .login-box h2 { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .login-box p { font-family: var(--sans); font-size: 0.82rem; color: var(--ink-muted); margin-bottom: 1.75rem; }
+  .login-error { font-family: var(--sans); font-size: 0.82rem; color: #c0392b; margin-top: 0.75rem; display: none; }
+
+  .admin-panel {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 5rem;
+    display: none;
+  }
+
+  .admin-panel.visible { display: block; }
+
+  .admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .admin-header h2 { font-family: var(--serif); font-size: 1.6rem; font-weight: 700; }
+
+  .btn-secondary {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 500;
+    padding: 0.5rem 1.1rem;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    color: var(--ink-muted);
+    transition: all 0.15s;
+  }
+  .btn-secondary:hover { background: var(--paper); color: var(--ink); }
+
+  .btn-primary {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 500;
+    padding: 0.5rem 1.1rem;
+    border-radius: 4px;
+    background: var(--ink);
+    color: white;
+    transition: background 0.15s;
+  }
+  .btn-primary:hover { background: var(--sastra); }
+
+  .btn-danger {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 3px;
+    color: #c0392b;
+    border: 1px solid #f0c0bb;
+    transition: all 0.15s;
+  }
+  .btn-danger:hover { background: #fdf0ef; }
+
+  .admin-article-list { margin-bottom: 2rem; }
+
+  .admin-article-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .admin-article-item:last-child { border-bottom: none; }
+
+  .aai-info { flex: 1; min-width: 0; }
+  .aai-title { font-family: var(--serif); font-size: 1rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .aai-meta { font-family: var(--sans); font-size: 0.75rem; color: var(--ink-light); margin-top: 2px; }
+  .aai-actions { display: flex; gap: 0.5rem; flex-shrink: 0; }
+
+  .status-badge {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    font-weight: 500;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .status-publish { background: #e8f5e9; color: #2e7d32; }
+  .status-draft { background: var(--paper); color: var(--ink-light); }
+
+  .article-form-wrapper {
+    display: none;
+    background: var(--paper);
+    border-radius: 6px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .article-form-wrapper.visible { display: block; }
+
+  .article-form-wrapper h3 { font-family: var(--serif); font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  @media (max-width: 600px) {
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    background: var(--paper);
+    padding: 2.5rem 1.5rem;
+  }
+
+  .footer-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-brand .logo { font-size: 1.2rem; }
+  .footer-brand p { font-family: var(--sans); font-size: 0.8rem; color: var(--ink-light); margin-top: 0.4rem; max-width: 250px; line-height: 1.5; }
+
+  .footer-links { display: flex; flex-direction: column; gap: 0.4rem; }
+  .footer-links a { font-family: var(--sans); font-size: 0.82rem; color: var(--ink-muted); transition: color 0.15s; }
+  .footer-links a:hover { color: var(--ink); }
+
+  .footer-bottom {
+    max-width: var(--max-w);
+    margin: 1.5rem auto 0;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    color: var(--ink-light);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  /* ── MAIN TOGGLE ── */
+  #page-home { display: block; }
+  .page-section { display: none; }
+
+  /* ── SEARCH ── */
+  .search-bar-wrap {
+    max-width: var(--max-w);
+    margin: 1.5rem auto 0;
+    padding: 0 1.5rem;
+  }
+
+  .search-input {
+    width: 100%;
+    max-width: 380px;
+    padding: 0.55rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    background: white;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .search-input:focus { border-color: var(--ink); }
+  .search-input::placeholder { color: var(--ink-light); }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: var(--ink);
+    color: white;
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: all 0.2s;
+    z-index: 999;
+    pointer-events: none;
+  }
+
+  .toast.show { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { display: none; position: absolute; top: 64px; left: 0; right: 0; background: var(--cream); border-bottom: 1px solid var(--border); padding: 1rem 1.5rem; flex-direction: column; gap: 0.25rem; }
+    nav.open { display: flex; }
+    nav a { padding: 0.6rem 0.75rem; }
+    .hamburger { display: flex; }
+    .articles-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── EMPTY STATE ── */
+  .empty-state { text-align: center; padding: 4rem 1rem; color: var(--ink-light); font-family: var(--sans); font-size: 0.9rem; }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <div class="header-inner">
+    <div class="logo" onclick="showPage('home')" style="cursor:pointer">KDS<span>.</span></div>
+    <nav id="main-nav">
+      <a href="#" onclick="showPage('home')" data-page="home">Beranda</a>
+      <a href="#" onclick="filterCat('sastra')" data-page="sastra">Sastra</a>
+      <a href="#" onclick="filterCat('sejarah')" data-page="sejarah">Sejarah</a>
+      <a href="#" onclick="filterCat('sains')" data-page="sains">Sains</a>
+      <a href="#" onclick="showPage('about')" data-page="about">Tentang</a>
+      <a href="#" onclick="showPage('contact')" data-page="contact">Kontak</a>
+      <a href="#" onclick="showPage('privacy')" data-page="privacy">Privasi</a>
+      <button class="nav-admin-btn" onclick="openAdmin()">Admin</button>
+    </nav>
+    <div class="hamburger" onclick="toggleNav()" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+
+<!-- ── HOME ── -->
+<div id="page-home">
+  <div class="hero">
+    <p class="hero-label">Blog Pribadi</p>
+    <h1>Ruang untuk membaca,<br><em>merenungi, dan menemukan.</em></h1>
+    <p>Kumpulan tulisan tentang sastra, perjalanan sejarah, dan keajaiban sains — ditulis untuk siapa saja yang ingin tahu lebih dalam.</p>
+  </div>
+
+  <div class="search-bar-wrap">
+    <input type="text" class="search-input" id="search-input" placeholder="Cari artikel..." oninput="renderArticles()">
+  </div>
+
+  <div class="cat-pills" style="margin-top:1.5rem;">
+    <button class="cat-pill active" data-cat="all" onclick="setCatFilter('all', this)">Semua</button>
+    <button class="cat-pill" data-cat="sastra" onclick="setCatFilter('sastra', this)">Sastra</button>
+    <button class="cat-pill" data-cat="sejarah" onclick="setCatFilter('sejarah', this)">Sejarah</button>
+    <button class="cat-pill" data-cat="sains" onclick="setCatFilter('sains', this)">Sains</button>
+  </div>
+
+  <div class="grid-section">
+    <div class="section-title" id="grid-label">Artikel Terbaru</div>
+    <div class="articles-grid" id="articles-grid"></div>
+  </div>
+</div>
+
+<!-- ── ARTICLE VIEW ── -->
+<div class="article-view page-section" id="page-article">
+  <button class="back-btn" onclick="showPage('home')">← Kembali</button>
+  <div class="article-header">
+    <span class="article-cat-badge" id="art-badge"></span>
+    <h1 class="article-title" id="art-title"></h1>
+    <div class="article-meta-row">
+      <span id="art-date"></span>
+      <span id="art-read"></span>
+    </div>
+  </div>
+  <hr class="article-divider">
+  <div class="article-body" id="art-body"></div>
+</div>
+
+<!-- ── ABOUT ── -->
+<div class="static-page page-section" id="page-about">
+  <h1 class="page-title">Tentang KDS Room</h1>
+  <p class="page-date">Terakhir diperbarui: Mei 2026</p>
+  <div class="page-body">
+    <p>Halo, saya <strong>Kevin Dias Syahputra</strong> — biasa dipanggil KDS. Saya seorang mahasiswa Sastra Inggris di Universitas Terbuka, sekaligus seseorang yang terlalu penasaran dengan banyak hal untuk hanya mengurusi satu bidang saja.</p>
+    <p>KDS Room lahir dari kebiasaan lama: membaca, mencatat, dan berbagi apa yang saya temukan. Blog ini bukan tempat berita terkini atau ulasan tren, melainkan ruang yang lebih tenang — tempat saya mendokumentasikan perjalanan intelektual saya sendiri.</p>
+    <h2>Tiga Kolom Utama</h2>
+    <p><strong>Sastra</strong> adalah rumah saya. Di sini saya menulis puisi, menganalisis karya, dan merefleksikan bagaimana kata-kata bisa membawa dunia dalam satu baris kalimat.</p>
+    <p><strong>Sejarah</strong> adalah cara saya memahami masa kini. Saya percaya bahwa tidak ada yang benar-benar baru di dunia ini — semuanya sudah pernah terjadi dalam bentuk yang berbeda.</p>
+    <p><strong>Sains</strong> adalah rasa kagum yang saya jaga. Dari fisika kuantum hingga biologi evolusi, sains mengajarkan saya untuk tetap rendah hati di hadapan kompleksitas alam semesta.</p>
+    <h2>Untuk Siapa Blog Ini?</h2>
+    <p>Untuk siapa saja yang berusia 12 tahun ke atas dan tidak takut membaca sesuatu yang memerlukan sedikit konsentrasi. Anda tidak perlu menjadi ahli — cukup bawa rasa ingin tahu Anda.</p>
+    <h2>Cara Menemukan Saya</h2>
+    <p>Instagram: <a href="https://www.instagram.com/kevin.dias.s/" target="_blank">@kevin.dias.s</a><br>Email: tersedia di halaman <a href="#" onclick="showPage('contact')">Kontak</a>.</p>
+  </div>
+</div>
+
+<!-- ── CONTACT ── -->
+<div class="static-page page-section" id="page-contact">
+  <h1 class="page-title">Kontak</h1>
+  <p class="page-date">Saya membaca setiap pesan yang masuk.</p>
+  <div class="page-body">
+    <p>Ada pertanyaan, saran, atau sekadar ingin berdiskusi tentang apa yang Anda baca di sini? Silakan tulis pesan di bawah ini atau hubungi saya langsung melalui Instagram <a href="https://www.instagram.com/kevin.dias.s/" target="_blank">@kevin.dias.s</a>.</p>
+    <p>Saya akan berusaha membalas dalam 2–3 hari kerja.</p>
+  </div>
+  <div class="contact-form">
+    <div class="form-group">
+      <label>Nama</label>
+      <input type="text" id="c-name" placeholder="Nama Anda">
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" id="c-email" placeholder="email@contoh.com">
+    </div>
+    <div class="form-group">
+      <label>Pesan</label>
+      <textarea id="c-msg" placeholder="Tulis pesan Anda di sini..."></textarea>
+    </div>
+    <button class="form-submit" onclick="submitContact()">Kirim Pesan</button>
+  </div>
+</div>
+
+<!-- ── PRIVACY POLICY ── -->
+<div class="static-page page-section" id="page-privacy">
+  <h1 class="page-title">Kebijakan Privasi</h1>
+  <p class="page-date">Berlaku sejak: 1 Januari 2025 · Terakhir diperbarui: Mei 2026</p>
+  <div class="page-body">
+    <p>Kebijakan Privasi ini menjelaskan bagaimana <strong>KDS Room</strong> ("kami", "situs ini") mengumpulkan, menggunakan, dan melindungi informasi yang Anda berikan ketika mengunjungi <strong>kdsroom.blogspot.com</strong> atau situs terkait.</p>
+    <p>Dengan menggunakan situs ini, Anda menyetujui kebijakan privasi yang tercantum di halaman ini.</p>
+
+    <h2>1. Informasi yang Kami Kumpulkan</h2>
+    <p>Kami dapat mengumpulkan jenis informasi berikut:</p>
+    <ul>
+      <li><strong>Informasi yang Anda berikan secara langsung</strong>, seperti nama dan alamat email yang dimasukkan melalui formulir kontak.</li>
+      <li><strong>Data penggunaan</strong>, termasuk alamat IP, jenis browser, halaman yang dikunjungi, waktu kunjungan, dan halaman rujukan — dikumpulkan secara otomatis melalui layanan analitik.</li>
+      <li><strong>Cookies</strong>, yaitu file kecil yang disimpan di perangkat Anda untuk meningkatkan pengalaman pengguna dan mendukung layanan periklanan pihak ketiga.</li>
+    </ul>
+
+    <h2>2. Cara Kami Menggunakan Informasi</h2>
+    <p>Informasi yang dikumpulkan digunakan untuk:</p>
+    <ul>
+      <li>Merespons pertanyaan atau pesan yang Anda kirimkan.</li>
+      <li>Memahami cara pengunjung berinteraksi dengan konten situs kami.</li>
+      <li>Meningkatkan kualitas dan relevansi konten yang kami sajikan.</li>
+      <li>Mendukung tampilan iklan yang relevan melalui Google AdSense.</li>
+    </ul>
+
+    <h2>3. Google AdSense dan Cookies Pihak Ketiga</h2>
+    <p>Situs ini menggunakan <strong>Google AdSense</strong>, layanan periklanan dari Google LLC. Google AdSense menggunakan cookies untuk menampilkan iklan yang relevan berdasarkan kunjungan Anda sebelumnya ke situs ini maupun situs lain di internet.</p>
+    <p>Google sebagai vendor pihak ketiga menggunakan cookies untuk menayangkan iklan. Penggunaan cookie DART oleh Google memungkinkan iklan ditampilkan kepada pengguna berdasarkan kunjungan mereka ke situs ini dan situs-situs lain. Anda dapat menolak penggunaan cookie DART dengan mengunjungi kebijakan privasi jaringan iklan dan konten Google di: <a href="https://policies.google.com/technologies/ads" target="_blank">https://policies.google.com/technologies/ads</a>.</p>
+    <p>Vendor pihak ketiga lainnya yang mungkin menggunakan cookies di situs ini:</p>
+    <ul>
+      <li>Google Analytics — untuk analisis lalu lintas situs.</li>
+      <li>Google Fonts — untuk memuat font yang digunakan dalam tampilan situs.</li>
+    </ul>
+
+    <h2>4. Cookie</h2>
+    <p>Situs ini menggunakan cookies. Cookies adalah file teks kecil yang disimpan di perangkat Anda oleh situs web yang Anda kunjungi. Cookies digunakan untuk menyimpan preferensi pengguna dan mendukung fungsi situs serta iklan berbasis minat.</p>
+    <p>Anda dapat mengatur browser Anda untuk menolak semua cookies atau memberikan notifikasi saat cookies dikirimkan. Namun, beberapa fitur situs mungkin tidak berfungsi dengan baik jika cookies dinonaktifkan.</p>
+
+    <h2>5. Tautan ke Situs Pihak Ketiga</h2>
+    <p>Situs ini mungkin memuat tautan ke situs web pihak ketiga. Kami tidak bertanggung jawab atas praktik privasi atau konten situs-situs tersebut. Kami menganjurkan Anda untuk membaca kebijakan privasi setiap situs yang Anda kunjungi.</p>
+
+    <h2>6. Keamanan Data</h2>
+    <p>Kami berkomitmen untuk melindungi informasi Anda. Namun, tidak ada metode transmisi data melalui internet yang sepenuhnya aman. Kami tidak dapat menjamin keamanan absolut atas data yang dikirimkan kepada kami.</p>
+
+    <h2>7. Anak-anak</h2>
+    <p>Situs ini ditujukan untuk pembaca berusia 12 tahun ke atas. Kami tidak secara sengaja mengumpulkan informasi pribadi dari anak-anak di bawah usia 13 tahun tanpa persetujuan orang tua. Jika Anda mengetahui bahwa anak Anda telah memberikan informasi pribadi tanpa izin Anda, silakan hubungi kami agar kami dapat menghapus informasi tersebut.</p>
+
+    <h2>8. Hak Pengguna</h2>
+    <p>Anda berhak untuk:</p>
+    <ul>
+      <li>Mengakses informasi pribadi yang kami miliki tentang Anda.</li>
+      <li>Meminta penghapusan atau koreksi data pribadi Anda.</li>
+      <li>Menolak penggunaan data Anda untuk tujuan pemasaran.</li>
+    </ul>
+    <p>Untuk mengajukan permintaan tersebut, silakan hubungi kami melalui halaman <a href="#" onclick="showPage('contact')">Kontak</a>.</p>
+
+    <h2>9. Perubahan Kebijakan Privasi</h2>
+    <p>Kami berhak memperbarui kebijakan privasi ini sewaktu-waktu. Perubahan akan diumumkan di halaman ini dengan memperbarui tanggal "terakhir diperbarui" di bagian atas. Anda disarankan untuk meninjau halaman ini secara berkala.</p>
+
+    <h2>10. Hubungi Kami</h2>
+    <p>Jika Anda memiliki pertanyaan terkait kebijakan privasi ini, silakan hubungi kami melalui halaman <a href="#" onclick="showPage('contact')">Kontak</a> atau melalui Instagram <a href="https://www.instagram.com/kevin.dias.s/" target="_blank">@kevin.dias.s</a>.</p>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo">KDS<span>.</span></div>
+      <p>Ruang baca dan refleksi tentang Sastra, Sejarah, dan Sains.</p>
+    </div>
+    <div class="footer-links">
+      <a href="#" onclick="showPage('home')">Beranda</a>
+      <a href="#" onclick="showPage('about')">Tentang</a>
+      <a href="#" onclick="showPage('contact')">Kontak</a>
+      <a href="#" onclick="showPage('privacy')">Kebijakan Privasi</a>
+    </div>
+    <div class="footer-links">
+      <a href="#" onclick="filterCat('sastra')">Sastra</a>
+      <a href="#" onclick="filterCat('sejarah')">Sejarah</a>
+      <a href="#" onclick="filterCat('sains')">Sains</a>
+      <a href="https://www.instagram.com/kevin.dias.s/" target="_blank">Instagram</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 KDS Room · Kevin Dias Syahputra</span>
+    <span>Dibuat dengan ❤ dan banyak kopi</span>
+  </div>
+</footer>
+
+<!-- ── ADMIN LOGIN MODAL ── -->
+<div class="admin-overlay" id="admin-overlay">
+  <div class="login-box">
+    <h2>Masuk Admin</h2>
+    <p>Akses terbatas untuk pengelola KDS Room.</p>
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text" id="login-user" placeholder="username" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" id="login-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <div style="display:flex;gap:0.75rem;margin-top:0.5rem;">
+      <button class="btn-primary" onclick="doLogin()">Masuk</button>
+      <button class="btn-secondary" onclick="closeAdmin()">Batal</button>
+    </div>
+    <div class="login-error" id="login-error">Username atau password salah.</div>
+  </div>
+</div>
+
+<!-- ── ADMIN PANEL ── -->
+<div class="admin-panel page-section" id="page-admin">
+  <div class="admin-header">
+    <h2>Dashboard Admin</h2>
+    <div style="display:flex;gap:0.75rem;">
+      <button class="btn-primary" onclick="openArticleForm()">+ Artikel Baru</button>
+      <button class="btn-secondary" onclick="logoutAdmin()">Keluar</button>
+    </div>
+  </div>
+
+  <div class="article-form-wrapper" id="article-form-wrapper">
+    <h3 id="form-title">Artikel Baru</h3>
+    <div class="form-group">
+      <label>Judul Artikel</label>
+      <input type="text" id="f-title" placeholder="Tulis judul artikel...">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Kategori</label>
+        <select id="f-cat" style="width:100%;padding:0.65rem 0.9rem;border:1px solid var(--border);border-radius:4px;font-family:var(--sans);font-size:0.9rem;background:white;color:var(--ink);outline:none;">
+          <option value="sastra">Sastra</option>
+          <option value="sejarah">Sejarah</option>
+          <option value="sains">Sains</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Status</label>
+        <select id="f-status" style="width:100%;padding:0.65rem 0.9rem;border:1px solid var(--border);border-radius:4px;font-family:var(--sans);font-size:0.9rem;background:white;color:var(--ink);outline:none;">
+          <option value="publish">Publish</option>
+          <option value="draft">Draft</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Isi Artikel (HTML diizinkan)</label>
+      <textarea id="f-body" style="width:100%;min-height:200px;padding:0.75rem;border:1px solid var(--border);border-radius:4px;font-family:var(--body-serif);font-size:0.95rem;resize:vertical;outline:none;" placeholder="Tulis isi artikel di sini..."></textarea>
+    </div>
+    <div style="display:flex;gap:0.75rem;">
+      <button class="btn-primary" onclick="saveArticle()">Simpan</button>
+      <button class="btn-secondary" onclick="closeArticleForm()">Batal</button>
+    </div>
+    <input type="hidden" id="f-edit-id" value="">
+  </div>
+
+  <div class="section-title">Semua Artikel</div>
+  <div class="admin-article-list" id="admin-article-list"></div>
+</div>
+
+<!-- ── TOAST ── -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── DATA ── //
+const ADMIN_USER = 'kds';
+const ADMIN_PASS = 'kdsroom2024';
+
+const DEFAULT_ARTICLES = [
+  {
+    id: 1,
+    title: 'Alfred yang Agung: Raja Wessex Sang Pelindung Inggris',
+    cat: 'sejarah',
+    status: 'publish',
+    date: '9 Mei 2026',
+    excerpt: 'Di balik kabut perang dan ancaman invasi Viking, seorang raja muda dari Wessex berdiri teguh mempertahankan sisa-sisa peradaban di kepulauan Britania.',
+    body: `<p>Alfred yang Agung (849–899 M) adalah salah satu raja paling berpengaruh dalam sejarah Inggris. Berkuasa atas Kerajaan Wessex sejak tahun 871, Alfred menghadapi ancaman terbesar yang pernah dihadapi bangsa Anglo-Saxon: serangan bertubi-tubi dari bangsa Viking yang datang dari utara dan timur.</p>
+<h2>Perang Melawan Viking</h2>
+<p>Pada masa-masa paling gelap pemerintahannya, Alfred bahkan terpaksa bersembunyi di rawa-rawa Somerset setelah pasukan Viking yang dipimpin Guthrum berhasil merebut sebagian besar wilayah kerajaannya. Namun dari persembunyian itulah Alfred merencanakan serangan balik yang kemudian menjadi titik balik sejarah.</p>
+<p>Pertempuran Edington pada tahun 878 M menjadi kemenangan besar Alfred. Guthrum dikalahkan dan dipaksa masuk Kristen, menandatangani Perjanjian Wedmore yang membagi Inggris menjadi wilayah Anglo-Saxon dan Danelaw.</p>
+<h2>Raja yang Membangun Peradaban</h2>
+<p>Yang membuat Alfred istimewa bukan hanya kemenangan militernya, tetapi juga visinya sebagai pemimpin yang membangun. Ia mendirikan jaringan benteng (<em>burh</em>) di seluruh Wessex, membentuk angkatan laut pertama Inggris, dan melakukan reformasi hukum besar-besaran.</p>
+<p>Lebih dari itu, Alfred adalah raja yang mencintai ilmu pengetahuan. Di tengah era yang sebagian besar rajanya buta huruf, ia belajar membaca pada usia 40 tahun dan menerjemahkan berbagai karya penting dari bahasa Latin ke bahasa Inggris Kuno — termasuk karya Bede dan Boethius — agar bisa diakses oleh rakyatnya.</p>
+<blockquote>Seorang raja yang tidak memiliki kebijaksanaan bukanlah raja, melainkan hanya pemilik mahkota.</blockquote>
+<p>Warisan Alfred bukan sekadar batas wilayah atau menara benteng, tetapi fondasi identitas nasional Inggris yang masih terasa hingga hari ini.</p>`
+  },
+  {
+    id: 2,
+    title: 'Serangan Awal Bangsa Viking di Biara Lindisfarne',
+    cat: 'sejarah',
+    status: 'publish',
+    date: '9 Mei 2026',
+    excerpt: 'Tahun 793 M menjadi luka yang tidak pernah terlupakan dalam memori kolektif Eropa Kristen: sebuah serangan tanpa peringatan ke tempat paling suci di utara Inggris.',
+    body: `<p>Pada tanggal 8 Juni 793 M, serangan mendadak dari laut menghancurkan Biara Lindisfarne — sebuah komunitas monastik yang terletak di sebuah pulau kecil di lepas pantai Northumbria, timur laut Inggris. Inilah yang oleh banyak sejarawan dicatat sebagai awal resmi Era Viking.</p>
+<h2>Lindisfarne: Jantung Spiritual Inggris Utara</h2>
+<p>Biara Lindisfarne, yang juga dikenal sebagai Holy Island, didirikan pada tahun 635 M oleh Santo Aidan dari Iona. Selama lebih dari satu setengah abad, biara ini menjadi pusat kebudayaan dan spiritualitas Kristen di Eropa Utara, menghasilkan karya-karya seperti <em>Lindisfarne Gospels</em> yang dihiasi ilustrasi emas yang memukau.</p>
+<h2>Serangan yang Mengubah Dunia</h2>
+<p>Alkuin, seorang sarjana yang saat itu berada di istana Charlemagne, menulis surat dengan penuh kepiluan: <em>"Tidak pernah sebelumnya teror seperti ini muncul dari bangsa kafir di Britania."</em> Para biarawan dibunuh, dilempar ke laut, atau dijual sebagai budak. Harta benda gereja dirampas, dan gedung biara dibakar.</p>
+<p>Bagi masyarakat Eropa Abad Pertengahan, serangan terhadap tempat suci ini bukan hanya tragedi fisik tetapi juga krisis teologis: bagaimana Tuhan membiarkan tempat-Nya dirusak oleh orang-orang kafir?</p>
+<h2>Awal dari Dua Abad Teror</h2>
+<p>Serangan Lindisfarne membuka babak baru. Selama dua ratus tahun berikutnya, bangsa Skandinavia akan terus memperluas jangkauan mereka — menjelajahi Atlantik Utara, mendirikan pemukiman di Normandia, menaklukkan Sisilia, dan bahkan mencapai pantai Amerika Utara sebelum Columbus lahir.</p>`
+  },
+  {
+    id: 3,
+    title: 'Aku Tidak Menunggumu Lagi, Tapi Namamu Belum Pergi',
+    cat: 'sastra',
+    status: 'publish',
+    date: '7 Mei 2026',
+    excerpt: 'Sebuah puisi tentang nama yang tertinggal setelah seseorang pergi — dan betapa sulitnya melupakan sesuatu yang sudah terasa seperti bagian dari diri sendiri.',
+    body: `<p><em>oleh Kevin Dias Syahputra</em></p>
+<p>Aku tidak menunggumu lagi —<br>
+itu yang kutuliskan di buku harian,<br>
+tapi jari-jariku berhenti sejenak<br>
+sebelum menutup halaman.</p>
+<p>Ada sesuatu yang aneh:<br>
+namamu sudah tidak kusimpan di ponsel,<br>
+tapi masih tersimpan<br>
+di suatu tempat di antara tulang rusuk,<br>
+tepat di sisi kiri.</p>
+<p>Mungkin begini caranya manusia bekerja —<br>
+kita bisa memilih untuk tidak menunggu,<br>
+tapi tidak bisa memilih<br>
+untuk melupakan.</p>
+<p>Seperti puisi yang sudah kuhafal sejak kelas tiga,<br>
+sekarang tak lagi kubutuhkan,<br>
+tapi masih bisa kubacakan<br>
+dalam gelap, tanpa cahaya sedikit pun.</p>
+<p>Aku tidak menunggumu lagi.<br>
+Tapi namamu —<br>
+ia sudah terlanjur tahu jalan pulang<br>
+ke dalam dadaku sendiri.</p>`
+  },
+  {
+    id: 4,
+    title: 'Mengapa Langit Berwarna Biru? Penjelasan Sains yang Sederhana',
+    cat: 'sains',
+    status: 'publish',
+    date: '5 Mei 2026',
+    excerpt: 'Pertanyaan yang terdengar sederhana ini menyimpan keindahan fisika yang luar biasa. Jawabannya melibatkan cahaya, molekul udara, dan sesuatu yang bernama hamburan Rayleigh.',
+    body: `<p>Pernahkah Anda berdiri di luar rumah, mendongak ke atas, dan bertanya: mengapa langit berwarna biru? Bukan hijau, bukan merah, tapi biru? Pertanyaan ini punya jawaban yang sangat elegan — dan memahaminya akan mengubah cara Anda melihat langit selamanya.</p>
+<h2>Cahaya Putih yang Tersembunyi</h2>
+<p>Pertama-tama, kita perlu tahu bahwa cahaya matahari yang tampak "putih" sebenarnya merupakan campuran dari semua warna dalam spektrum tampak: merah, jingga, kuning, hijau, biru, nila, dan ungu. Ini bisa Anda lihat sendiri ketika hujan membiaskan cahaya matahari menjadi pelangi.</p>
+<h2>Hamburan Rayleigh</h2>
+<p>Ketika cahaya matahari memasuki atmosfer Bumi, ia bertabrakan dengan molekul-molekul gas seperti nitrogen dan oksigen. Proses ini disebut <strong>hamburan Rayleigh</strong> (dinamai dari fisikawan Inggris Lord Rayleigh).</p>
+<p>Intinya: cahaya dengan panjang gelombang pendek (biru dan ungu) jauh lebih mudah dihamburkan ke segala arah oleh molekul-molekul udara, dibandingkan cahaya dengan panjang gelombang panjang (merah dan jingga). Warna biru dihamburkan sekitar 5,5 kali lebih kuat dibanding merah.</p>
+<h2>Lalu Mengapa Biru, Bukan Ungu?</h2>
+<p>Pertanyaan bagus! Sebenarnya ungu dihamburkan lebih kuat dari biru. Tapi ada dua alasan langit tidak tampak ungu: pertama, matahari memancarkan lebih sedikit cahaya ungu dibanding biru. Kedua, mata manusia secara biologis lebih sensitif terhadap warna biru.</p>
+<h2>Kenapa Matahari Terbenam Itu Merah?</h2>
+<p>Saat fajar atau senja, cahaya matahari harus melewati lapisan atmosfer yang jauh lebih tebal. Selama perjalanan panjang itu, hampir semua cahaya biru sudah "terbuang" karena hamburan. Yang tersisa dan sampai ke mata kita adalah warna-warna panjang gelombang panjang: merah, jingga, dan kuning. Itulah mengapa senja selalu tampak dramatis dan hangat.</p>`
+  },
+  {
+    id: 5,
+    title: 'Relativitas Waktu: Ketika Jam Berjalan Berbeda untuk Setiap Orang',
+    cat: 'sains',
+    status: 'publish',
+    date: '3 Mei 2026',
+    excerpt: 'Teori relativitas Einstein bukan hanya abstraksi matematika — ia mengubah cara kita memahami realitas, ruang, dan waktu itu sendiri.',
+    body: `<p>Bayangkan Anda memiliki kembar identik. Satu dari Anda pergi ke luar angkasa dengan roket berkecepatan mendekati cahaya, sementara yang lain tinggal di Bumi. Ketika sang kembar luar angkasa kembali, ia akan lebih muda dari Anda. Bukan karena sihir — tapi karena fisika.</p>
+<h2>Einstein dan Ide yang Mengubah Segalanya</h2>
+<p>Pada tahun 1905, Albert Einstein mempublikasikan teori relativitas khusus yang mengandung premis mengejutkan: <strong>waktu tidak berjalan dengan kecepatan yang sama di semua tempat</strong>. Semakin cepat seseorang bergerak, semakin lambat waktu berjalan untuknya dibandingkan dengan orang yang diam.</p>
+<p>Fenomena ini disebut <em>dilatasi waktu</em> (time dilation), dan ini bukan sekadar teori — telah dibuktikan berulang kali dengan eksperimen nyata.</p>
+<h2>Bukti yang Kita Gunakan Setiap Hari</h2>
+<p>Satelit GPS yang mengorbit Bumi bergerak sangat cepat dan berada jauh dari pusat gravitasi Bumi. Akibatnya, jam di dalam satelit GPS berjalan sedikit lebih cepat dibanding jam di permukaan Bumi. Perbedaannya kecil — sekitar 38 mikrodetik per hari — tapi jika tidak dikoreksi, sistem GPS akan meleset beberapa kilometer setiap harinya.</p>
+<h2>Gravitasi pun Mempengaruhi Waktu</h2>
+<p>Einstein kemudian mengembangkan teori relativitas umum (1915), yang menambahkan dimensi baru: gravitasi juga mempengaruhi waktu. Semakin kuat medan gravitasi, semakin lambat waktu berjalan. Di dekat lubang hitam, waktu bisa berjalan sangat lambat hingga tampak hampir berhenti bagi pengamat dari luar.</p>
+<p>Jadi ketika Anda mengeluh bahwa waktu terasa cepat saat bahagia dan lambat saat bosan — secara fisika pun, waktu memang tidak pernah sama untuk semua orang.</p>`
+  },
+  {
+    id: 6,
+    title: 'Pantun dan Syair: Warisan Sastra Melayu yang Tak Lapuk Dimakan Zaman',
+    cat: 'sastra',
+    status: 'publish',
+    date: '1 Mei 2026',
+    excerpt: 'Jauh sebelum novel dan cerpen dikenal di Nusantara, masyarakat kita sudah memiliki tradisi puisi lisan yang kaya, penuh kode, dan sangat bijaksana.',
+    body: `<p>Di berbagai sudut Nusantara, nenek moyang kita telah lama menggunakan kata-kata bukan sekadar untuk berkomunikasi, tetapi untuk menyimpan kebijaksanaan, merayu, memperingatkan, dan merayakan hidup. Pantun dan syair adalah dua bentuk puisi paling tua dalam tradisi sastra Melayu.</p>
+<h2>Pantun: Lapisan Makna dalam Empat Baris</h2>
+<p>Pantun terdiri dari empat baris dengan pola rima a-b-a-b. Dua baris pertama disebut <em>sampiran</em> — sebuah gambaran alam yang tampak tidak berhubungan. Dua baris berikutnya adalah <em>isi</em> — pesan sesungguhnya yang ingin disampaikan.</p>
+<p>Contoh yang terkenal:</p>
+<blockquote>
+Kalau ada sumur di ladang,<br>
+boleh kita menumpang mandi;<br>
+Kalau ada umur yang panjang,<br>
+boleh kita berjumpa lagi.
+</blockquote>
+<p>Sampiran tentang sumur dan ladang bukan sekadar latar — ia menciptakan nada, ritme, dan suasana sebelum pesan utama disampaikan. Keindahan pantun terletak pada bagaimana kedua lapisan ini saling memantul tanpa harus saling menjelaskan.</p>
+<h2>Syair: Narasi dalam Bait-bait</h2>
+<p>Berbeda dengan pantun, syair menggunakan pola rima a-a-a-a dan biasanya lebih panjang — menceritakan sebuah kisah secara berkesinambungan. Salah satu yang paling terkenal adalah <em>Syair Ken Tambuhan</em> dan <em>Syair Bidasari</em>.</p>
+<p>Syair sering digunakan untuk menceritakan kisah-kisah romantis, sejarah kerajaan, atau petuah moral yang ingin disampaikan dari generasi ke generasi.</p>
+<h2>Relevansinya Hari Ini</h2>
+<p>Di era media sosial, pantun mengalami kebangkitan kecil-kecilan. Banyak anak muda yang menjadikan pantun sebagai humor, caption foto, atau bahkan cara merayu. Tanpa disadari, mereka meneruskan tradisi yang sudah berumur ratusan tahun.</p>
+<p>Sastra klasik bukan museum — ia adalah percakapan panjang yang tidak pernah selesai.</p>`
+  },
+  {
+    id: 7,
+    title: 'Tembok Hadrian: Batas Utara Peradaban Romawi di Inggris',
+    cat: 'sejarah',
+    status: 'publish',
+    date: '6 Mei 2026',
+    excerpt: 'Dibangun atas perintah Kaisar Hadrian pada abad ke-2 Masehi, tembok sepanjang 117 kilometer ini menjadi simbol paling nyata dari batas kekuasaan Romawi.',
+    body: `<p>Jika Anda berkendara melewati pegunungan berbatu di utara Inggris, di sepanjang perbatasan modern antara Inggris dan Skotlandia, Anda mungkin akan menemukan sisa-sisa struktur batu yang tampak seperti luka panjang di wajah bumi. Itulah Tembok Hadrian — salah satu monumen warisan Romawi yang paling menakjubkan di dunia.</p>
+<h2>Mengapa Dibangun?</h2>
+<p>Pada tahun 122 M, Kaisar Hadrian mengunjungi provinsi Britannia dan memutuskan untuk membangun sebuah tembok pertahanan dari pantai barat hingga pantai timur pulau. Alasannya bukan sekadar militer — ini juga pernyataan politik: ini adalah batas Kekaisaran Romawi.</p>
+<p>Di sebelah utara tembok tinggal suku-suku Pictish yang belum pernah bisa ditaklukkan oleh Roma. Di sebelah selatan, kehidupan Romawi berlangsung dengan kota-kota, vila, pasar, dan pemandian umum.</p>
+<h2>Sebuah Proyek Luar Biasa</h2>
+<p>Tembok ini membentang sepanjang sekitar 117 kilometer (73 mil), dengan ketinggian mencapai 5–6 meter dan lebar 2,5–3 meter. Di sepanjang tembok terdapat 16 benteng besar, 80 milecastle (pos penjagaan kecil setiap satu mil Romawi), serta menara pengintai di antaranya.</p>
+<p>Diperkirakan sekitar 15.000 tentara Romawi ditempatkan di sepanjang tembok ini secara bersamaan. Mereka tidak hanya berjaga — mereka membentuk komunitas, menikah dengan penduduk lokal, dan meninggalkan tanda-tanda kehidupan yang masih bisa kita temukan hari ini.</p>
+<h2>Warisan yang Hidup</h2>
+<p>Saat ini, Tembok Hadrian adalah Situs Warisan Dunia UNESCO dan salah satu destinasi wisata bersejarah paling populer di Inggris. Berjalan menyusurinya adalah seperti melangkah kembali 1.900 tahun — ketika prajurit-prajurit dari Afrika Utara, Suriah, dan Jerman berdiri di atas batu yang sama, menatap ke utara yang kabur dan dingin.</p>`
+  },
+  {
+    id: 8,
+    title: 'DNA: Buku Instruksi Kehidupan yang Tersimpan dalam Setiap Sel',
+    cat: 'sains',
+    status: 'publish',
+    date: '28 Apr 2026',
+    excerpt: 'Di dalam inti setiap sel tubuh Anda tersimpan instruksi lengkap untuk membangun dan menjalankan seluruh organisme — sebuah teks yang panjangnya dua meter, dilipat hingga muat dalam ruang seukuran titik.',
+    body: `<p>Jika Anda merentangkan DNA dari satu sel manusia, panjangnya sekitar dua meter. Namun semua DNA itu tergulung rapi di dalam inti sel yang diameternya hanya sekitar sepersepuluh diameter rambut manusia. Ini baru satu sel — dan tubuh Anda memiliki sekitar 37 triliun sel.</p>
+<h2>Apa Itu DNA?</h2>
+<p>DNA (Asam Deoksiribonukleat) adalah molekul yang menyimpan instruksi genetik untuk perkembangan, fungsi, pertumbuhan, dan reproduksi semua makhluk hidup yang diketahui. Strukturnya berbentuk <em>double helix</em> — dua untai yang saling melilit seperti tangga spiral.</p>
+<p>Setiap "anak tangga" terdiri dari pasangan basa nitrogen: adenin (A) selalu berpasangan dengan timin (T), dan guanin (G) selalu berpasangan dengan sitosin (C). Urutan pasangan basa inilah yang membentuk kode genetik Anda.</p>
+<h2>Gen: Kalimat dalam Buku Instruksi</h2>
+<p>Jika DNA adalah sebuah buku, maka gen adalah kalimat-kalimatnya. Setiap gen adalah segmen DNA yang mengkode instruksi untuk membuat satu protein tertentu. Protein inilah yang kemudian menjalankan hampir semua fungsi biologis — dari membangun otot hingga melawan infeksi.</p>
+<p>Manusia memiliki sekitar 20.000–25.000 gen, yang hanya mencakup sekitar 1–2% dari total DNA kita. Sisanya? Ilmuwan menyebutnya "non-coding DNA" — dan penelitian terbaru menunjukkan bahwa bagian ini jauh lebih penting dari yang kita kira sebelumnya.</p>
+<h2>Kenapa Ini Penting?</h2>
+<p>Pemahaman tentang DNA telah merevolusi kedokteran modern. Dari diagnosis penyakit genetik hingga pengembangan vaksin mRNA (seperti yang digunakan dalam pandemi COVID-19), dari identifikasi forensik hingga terapi gen untuk kanker — semua berakar pada pemahaman kita tentang molekul luar biasa ini.</p>`
+  }
+];
+
+// ── STATE ── //
+let articles = [];
+let catFilter = 'all';
+let editingId = null;
+let isLoggedIn = false;
+
+function loadArticles() {
+  const stored = localStorage.getItem('kds_articles');
+  if (stored) {
+    articles = JSON.parse(stored);
+  } else {
+    articles = DEFAULT_ARTICLES;
+    saveArticles();
+  }
+}
+
+function saveArticles() {
+  localStorage.setItem('kds_articles', JSON.stringify(articles));
+}
+
+function getNextId() {
+  return articles.length > 0 ? Math.max(...articles.map(a => a.id)) + 1 : 1;
+}
+
+function readTime(body) {
+  const words = body.replace(/<[^>]+>/g, '').split(/\s+/).length;
+  const mins = Math.ceil(words / 200);
+  return mins + ' menit baca';
+}
+
+// ── NAVIGATION ── //
+let currentPage = 'home';
+
+function showPage(page) {
+  document.getElementById('page-home').style.display = 'none';
+  document.querySelectorAll('.page-section').forEach(el => el.classList.remove('visible'));
+
+  if (page === 'home') {
+    document.getElementById('page-home').style.display = 'block';
+    catFilter = 'all';
+    renderArticles();
+    updateCatPills('all');
+    updateNavActive('home');
+  } else if (page === 'admin') {
+    if (!isLoggedIn) { openAdmin(); return; }
+    document.getElementById('page-admin').classList.add('visible');
+    renderAdminList();
+    updateNavActive('');
+  } else {
+    const el = document.getElementById('page-' + page);
+    if (el) el.classList.add('visible');
+    updateNavActive(page);
+  }
+
+  currentPage = page;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  const nav = document.getElementById('main-nav');
+  nav.classList.remove('open');
+}
+
+function updateNavActive(page) {
+  document.querySelectorAll('nav a[data-page]').forEach(a => {
+    a.classList.toggle('active', a.dataset.page === page);
+  });
+}
+
+function filterCat(cat) {
+  catFilter = cat;
+  showPage('home');
+  setCatFilterByValue(cat);
+  updateNavActive(cat);
+}
+
+function setCatFilter(cat, el) {
+  catFilter = cat;
+  updateCatPills(cat);
+  renderArticles();
+  const label = document.getElementById('grid-label');
+  if (cat === 'all') label.textContent = 'Artikel Terbaru';
+  else label.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+}
+
+function setCatFilterByValue(cat) {
+  const pill = document.querySelector(`.cat-pill[data-cat="${cat}"]`);
+  if (pill) setCatFilter(cat, pill);
+  updateCatPills(cat);
+}
+
+function updateCatPills(active) {
+  document.querySelectorAll('.cat-pill').forEach(p => {
+    p.classList.toggle('active', p.dataset.cat === active);
+  });
+}
+
+// ── ARTICLES ── //
+function renderArticles() {
+  const grid = document.getElementById('articles-grid');
+  const query = (document.getElementById('search-input')?.value || '').toLowerCase();
+  const published = articles.filter(a => a.status === 'publish');
+  const filtered = published.filter(a => {
+    const matchCat = catFilter === 'all' || a.cat === catFilter;
+    const matchQ = !query || a.title.toLowerCase().includes(query) || a.excerpt.toLowerCase().includes(query);
+    return matchCat && matchQ;
+  });
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1;background:var(--cream);">Belum ada artikel di sini.</div>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map(a => `
+    <div class="article-card" onclick="openArticle(${a.id})">
+      <div class="card-cat ${a.cat}">
+        <span class="cat-dot"></span>
+        ${a.cat.charAt(0).toUpperCase() + a.cat.slice(1)}
+      </div>
+      <div class="card-title">${a.title}</div>
+      <div class="card-excerpt">${a.excerpt}</div>
+      <div class="card-meta">
+        <span>${a.date}</span>
+        <span>${readTime(a.body)}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function openArticle(id) {
+  const art = articles.find(a => a.id === id);
+  if (!art) return;
+  const badge = { sastra: 'badge-sastra', sejarah: 'badge-sejarah', sains: 'badge-sains' };
+  document.getElementById('art-badge').className = 'article-cat-badge ' + badge[art.cat];
+  document.getElementById('art-badge').textContent = art.cat.charAt(0).toUpperCase() + art.cat.slice(1);
+  document.getElementById('art-title').textContent = art.title;
+  document.getElementById('art-date').textContent = art.date;
+  document.getElementById('art-read').textContent = readTime(art.body);
+  document.getElementById('art-body').innerHTML = art.body;
+  showPage('article');
+}
+
+// ── ADMIN ── //
+function openAdmin() {
+  if (isLoggedIn) { showPage('admin'); return; }
+  document.getElementById('admin-overlay').classList.add('visible');
+  document.getElementById('login-user').value = '';
+  document.getElementById('login-pass').value = '';
+  document.getElementById('login-error').style.display = 'none';
+  setTimeout(() => document.getElementById('login-user').focus(), 100);
+}
+
+function closeAdmin() {
+  document.getElementById('admin-overlay').classList.remove('visible');
+}
+
+function doLogin() {
+  const u = document.getElementById('login-user').value.trim();
+  const p = document.getElementById('login-pass').value;
+  if (u === ADMIN_USER && p === ADMIN_PASS) {
+    isLoggedIn = true;
+    closeAdmin();
+    showPage('admin');
+  } else {
+    document.getElementById('login-error').style.display = 'block';
+  }
+}
+
+function logoutAdmin() {
+  isLoggedIn = false;
+  showPage('home');
+  showToast('Berhasil keluar.');
+}
+
+function renderAdminList() {
+  const list = document.getElementById('admin-article-list');
+  if (articles.length === 0) {
+    list.innerHTML = '<div class="empty-state">Belum ada artikel.</div>';
+    return;
+  }
+  list.innerHTML = articles.slice().reverse().map(a => `
+    <div class="admin-article-item">
+      <div class="aai-info">
+        <div class="aai-title">${a.title}</div>
+        <div class="aai-meta">${a.cat} · ${a.date} <span class="status-badge status-${a.status}">${a.status}</span></div>
+      </div>
+      <div class="aai-actions">
+        <button class="btn-secondary" style="font-size:0.78rem;padding:0.35rem 0.75rem;" onclick="editArticle(${a.id})">Edit</button>
+        <button class="btn-danger" onclick="deleteArticle(${a.id})">Hapus</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function openArticleForm() {
+  editingId = null;
+  document.getElementById('form-title').textContent = 'Artikel Baru';
+  document.getElementById('f-title').value = '';
+  document.getElementById('f-cat').value = 'sastra';
+  document.getElementById('f-status').value = 'publish';
+  document.getElementById('f-body').value = '';
+  document.getElementById('f-edit-id').value = '';
+  document.getElementById('article-form-wrapper').classList.add('visible');
+  document.getElementById('f-title').focus();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function closeArticleForm() {
+  document.getElementById('article-form-wrapper').classList.remove('visible');
+  editingId = null;
+}
+
+function editArticle(id) {
+  const art = articles.find(a => a.id === id);
+  if (!art) return;
+  editingId = id;
+  document.getElementById('form-title').textContent = 'Edit Artikel';
+  document.getElementById('f-title').value = art.title;
+  document.getElementById('f-cat').value = art.cat;
+  document.getElementById('f-status').value = art.status;
+  document.getElementById('f-body').value = art.body;
+  document.getElementById('f-edit-id').value = id;
+  document.getElementById('article-form-wrapper').classList.add('visible');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function saveArticle() {
+  const title = document.getElementById('f-title').value.trim();
+  const cat = document.getElementById('f-cat').value;
+  const status = document.getElementById('f-status').value;
+  const body = document.getElementById('f-body').value.trim();
+
+  if (!title || !body) { showToast('Judul dan isi tidak boleh kosong.'); return; }
+
+  const today = new Date();
+  const months = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+  const dateStr = today.getDate() + ' ' + months[today.getMonth()] + ' ' + today.getFullYear();
+
+  const plain = body.replace(/<[^>]+>/g, ' ');
+  const excerpt = plain.substring(0, 180).trim() + '…';
+
+  if (editingId) {
+    const idx = articles.findIndex(a => a.id === editingId);
+    if (idx !== -1) {
+      articles[idx] = { ...articles[idx], title, cat, status, body, excerpt };
+    }
+    showToast('Artikel berhasil diperbarui!');
+  } else {
+    articles.push({ id: getNextId(), title, cat, status, date: dateStr, excerpt, body });
+    showToast('Artikel berhasil diterbitkan!');
+  }
+
+  saveArticles();
+  closeArticleForm();
+  renderAdminList();
+}
+
+function deleteArticle(id) {
+  if (!confirm('Hapus artikel ini? Tindakan tidak bisa dibatalkan.')) return;
+  articles = articles.filter(a => a.id !== id);
+  saveArticles();
+  renderAdminList();
+  showToast('Artikel dihapus.');
+}
+
+// ── CONTACT ── //
+function submitContact() {
+  const name = document.getElementById('c-name').value.trim();
+  const email = document.getElementById('c-email').value.trim();
+  const msg = document.getElementById('c-msg').value.trim();
+  if (!name || !email || !msg) { showToast('Semua kolom harus diisi.'); return; }
+  document.getElementById('c-name').value = '';
+  document.getElementById('c-email').value = '';
+  document.getElementById('c-msg').value = '';
+  showToast('Pesan terkirim! Terima kasih, ' + name + '.');
+}
+
+// ── UI UTILS ── //
+function toggleNav() {
+  document.getElementById('main-nav').classList.toggle('open');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ── INIT ── //
+loadArticles();
+showPage('home');
+</script>
+</body>
+</html>
